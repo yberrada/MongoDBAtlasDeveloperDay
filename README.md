@@ -1,20 +1,23 @@
-# WORKSHOP: MongoDB as a Vector Database
+# WORKSHOP: MongoDB for Text and Semantic Search
 
 The following is a plaintext version of the exercises in the PDF presentation. It is meant to guide workshop participants through the process by providing code snippets that can be easily copy/pasted into [MongoDB Atlas](https://cloud.mongodb.com/).
 
 Please also refer to [the PDF of the presentation](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/DevDayPresentation_Full.pdf) to see helpful screenshots to aid in completing the exercises. Answers for both the Compass GUI approach and shell approach are in the PDF, but plaintext versions can be found in the `answers/` folder.  
 
 ## Checkpoint 0: Prerequisites
-1. As a workshop attendee/participants, please ensure that you have followed all of the [list of prerequisites](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/tree/main#prerequisites). Then, please [install MongoDB Compass](https://www.mongodb.com/try/download/compass) and copy this repository to have access to the `wikipedia_tiny.json` file in `data/`.
-
+1. As a workshop attendee/participants, please ensure that you have followed all of the [list of prerequisites](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/tree/main#prerequisites).
+2. Access MongoDB Atlas cluster  
+   - Login to the attendee portal https://www.atlas-labs.cloud/ using your **email** as a username and **AtlasW0rkshop!** as a password.
+   - Gain access to your dedicated cluster by clicking on <b>Atlas Cluster</b> in the top left corner.
+   - The e-mail will be pre-populated. To login use the following password: "***AtlasW0rkshop!*** "
 
 ## Atlas Search
-### **Exercise 9**: Import Data Using Compass GUI
+### **Exercise 1**: Check out Data loaded in Atlas
 #### Explanation and How-to
-Within this repo's `data/` folder, you will find a [`wikipedia_tiny.json`](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/data/wikipedia_tiny.json) file containing 5,000 documents. These documents are cleaned wikipedia articles that, among some other metadata, contain the article title, body in plaintext, and a 384-dimension vector representation of plaintext body. Below is a snippet of what the records look like:
+Within this repo folder, you will find a [`wikipedia_tiny.json`](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/data/wikipedia_tiny.json) file containing 5,000 documents. These documents are cleaned wikipedia articles that, among some other metadata, contain the article title, body in plaintext, and a 384-dimension vector representation of plaintext body. 
+This file was loaded in your MongoDB Atlas Cluster. Go to Atlas, click on Collections and explore the data under the `devday` database and collection name `wikipedia`.
+Below is a snippet of what the records look like:
 ![wikipedia file snippet as seen from Compass](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/compass%20and%20shell/images/Compass_WikpediaSchema.png)
-#### Exercise
-Create a new collection with database name `devday` and collection name `wikipedia`. Then, import the `wikipedia_tiny.json` tile into it. [Please refer to this guide on how to import data files using the Compass GUI](https://www.mongodb.com/docs/compass/current/import-export/#import-data-into-a-collection)
 
 ### **Exercise 1**: Create an Atlas Search Index and Search
 #### Explanation and How-to
@@ -71,23 +74,7 @@ Play around with search queries, using [this documentation root](https://www.mon
   }
 }
 ```
-[Highlighting](https://www.mongodb.com/docs/atlas/atlas-search/highlighting/):
-```
-{
-  index: '<indexName>',
-  text: {
-	  query: ‘<queryText>’,
-	  path: '<indexedFieldName(s)>',
-	  fuzzy: {
-  	  maxEdits: 2,
-  	  prefixLength: 0
-	  }
-  },
-  highlight: {
-	  path: "<indexedFieldName>"
-  }
-}
-```
+
 [Compound search](https://www.mongodb.com/docs/atlas/atlas-search/compound/#definition):
 ```
 {
@@ -115,9 +102,6 @@ To see the `relevancy score` and `highlights`, add a subsequent `$project` stage
 ```
 score: {
     $meta: "searchScore",
-  },
-  highlights: {
-    $meta: "searchHighlights",
   },
 ```
 Here is a full aggregation pipeline that can be run via the embedded shell:
