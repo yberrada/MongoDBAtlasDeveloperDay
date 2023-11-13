@@ -88,6 +88,7 @@ This default index configuration will capture all indexable fields and make them
 
 Once the index is ready, go back to Atlas. Select the `wikipedia` collection and go to the `Aggregations` tab like before. Hit `Add Stage` and enter `$search` for the first stage. Atlas should provide you with the syntax.
 ![alt text](./public/readme/search-stage.png) 
+
 Try running the following query in the search stage:  
 ```
 {
@@ -244,6 +245,11 @@ Now is the time to test your vector search index through code:
 - The python code is only missing the aggregation pipeline. Paste it and test your code: 
 ```python3 search.py -q "When was automated processing founded"```
 - Other Questions to test your code with can be: 
+  - "Who did Henry Taub found Automatic Payrolls with"
+  - "When did ADP for public?"
+  - "What happened in 1985?"
+  - "How many clients did ADP have in 1961?"
+  - "Where is ADP ranked on Fortune 500?"
   
 
 ---
