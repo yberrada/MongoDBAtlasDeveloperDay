@@ -11,14 +11,14 @@ Answers for the exercises can be found in the `answers/` folder.
    - Gain access to your dedicated cluster by clicking on <b>Atlas Cluster</b> in the top left corner.
    - The e-mail will be pre-populated. To login use the following password: "***AtlasW0rkshop!*** "
 
->Great! By default, Atlas cluters are not reachable from the internet. Therefore, all the cluster have been pre-configured for both Network Security and User Authentication and Authorization. All clusters share the same credentials: 
-*username:* **adpadmin** 
-*password:* **adpadminpass**
+>Great! By default, Atlas cluters are not reachable from the internet. Therefore, all the clusters have been pre-configured for both Network Security and User Authentication and Authorization. All clusters share the same credentials: <br />
+*username:* **adpadmin** <br />
+*password:* **adpadminpass**<br />
 
-## Atlas Search
-### **Exercise 1**: Load Data in Atlas
+## Exercise 1 : Load Data in Atlas
 #### Explanation and How-to
-Within this repo folder, you will find a [`corpus.txt`](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/data/wikipedia_tiny.json) file containing the **History** section of ADP's page on wikipedia https://en.wikipedia.org/wiki/ADP_(company). You will now have to load the file in MongoDB. 
+Within this repo folder, you will find a [`corpus.txt`](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/corpus.txt) file containing the **History** section of ADP's page on wikipedia https://en.wikipedia.org/wiki/ADP_(company).This is the dataset that will be used throughout the Workshop
+
 #### Exercise
 ### Step 1 - Clone Github Repo
 We're going to start by setting up our project. Start by creating a folder for the workshop content. 
@@ -37,11 +37,11 @@ We're going to start by setting up our project. Start by creating a folder for t
 - Open the project in your favorite IDE and update your connection string in the`./MongoDBAtlasDeveloperDay/params.py`. To do so:
   - Go to the **Data Services** Tab. 
   - Under the cluster view, Click on **Connect**
-  ![alt text](./public/readme/connect.png) 
+  ![alt text](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/public/readme/connect.png) 
 
   - Select **Connect your application**
   - Make sure the python driver is selected and Copy the connection string. 
-  - Update your `params.py` file.
+  - Update the connection string in the `params.py` file.
 
 - Now, install the pre-requisites:
   ```
@@ -53,11 +53,12 @@ We're going to start by setting up our project. Start by creating a folder for t
   ```
 
 
-This file was loaded in your MongoDB Atlas Cluster. Go to Atlas, click on Collections and explore the data under the `devday` database and collection name `wikipedia`.
+The paragraph in the file was split to multiple sentences, each loaded in your MongoDB Atlas Cluster as a document. Go to Atlas, click on Collections and explore the data under the `devday` database and collection name `wikipedia`.
 Below is a snippet of what the records look like:
-![wikipedia file snippet as seen from Compass](https://github.com/nickgogan/MongoDBAtlasDeveloperDay/blob/main/compass%20and%20shell/images/Compass_WikpediaSchema.png)
+![wikipedia file snippet as seen from Atlas](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/public/readme/previewcollection.png)
 
-### **Exercise 1**: Create an Atlas Search Index and Search
+## Exercise 2 : Create an Atlas Search Index and Search
+
 #### Explanation and How-to
 [Atlas Search](https://www.mongodb.com/docs/atlas/atlas-search/) is an embedded full-text search capability in MongoDB Atlas that gives you a seamless, scalable experience for building relevance-based app features. Built on Apache Lucene, Atlas Search eliminates the need to run a separate search system alongside your database.
 
@@ -163,7 +164,8 @@ Next, play around compound queries (Search queries on multiple fields). Below is
 }
 ```
 
-### **Exercise 3**: Semantic Search
+## Exercise 3 : Semantic Search
+
 #### Explanation and How-to
 You can perform semantic search on data in your Atlas cluster running MongoDB v6.0.11 or later using Atlas Vector Search. You can store vector embeddings for any kind of data along with other data in your collection on the Atlas cluster. Atlas Vector Search supports embeddings that are less than and equal to 2048 dimensions in width.
 
@@ -202,8 +204,8 @@ Let's create a search index using the embeddings already available for the `wiki
 2. Hit `Create Search Index`.
 It should take only a couple of minutes for this index to be created and reach `ACTIVE` status, meaning that it is searchable.
 
+## Exercise 4 : Test Query in Atlas
 
-# Test Query in Atlas
 Once the index is ready, go back to Compass. Select the `wikipedia` collection and go to the `Aggregations` tab like before. Hit `Add Stage` and enter `$search` for the first stage. Compass should provide you with sample syntax. To run a vector search query,  
 We now can test our Search Index through the aggregation pipeline builder. 
 - Go back to ‘**Browse Collections**’ and select the '**sample-mflix.movies**' collection.
@@ -227,7 +229,7 @@ We now can test our Search Index through the aggregation pipeline builder.
 > The search stage should match a movie titled: *The Storyteller*. Notice that our query string is *Storteler*.
 
 
-# Test Query in Code
+## Exercise 5 : Test Query in Code
 
 - From the Atlas Aggregation builder, export the pipeline to Python syntax by clicking on **EXPORT TO LANGUAGE**.
 - Make sure to copy the pipeline code.
