@@ -1,7 +1,8 @@
 # WORKSHOP: MongoDB for Text and Semantic Search
 
-The following is a plaintext version of the exercises in the PDF presentation. It is meant to guide workshop participants through the process by providing code snippets that can be easily copy/pasted into [MongoDB Atlas](https://cloud.mongodb.com/).
-Answers for both the Compass GUI approach and shell approach are in the PDF, but plaintext versions can be found in the `answers/` folder.  
+The goal of this lab is to get you familiar with some of the MongoDB Atlas Search features and the MongoDB Python Driver.
+
+Answers for the exercises can be found in the `answers/` folder.  
 
 ## Exercise 0: Prerequisites
 ### Step 1: Access MongoDB Atlas cluster  
@@ -113,8 +114,8 @@ Here is a full aggregation pipeline:
     $search: {
       index: "default",
       text: {
-        query: "story",
-        path: "text",
+        query: "werewolves",
+        path: "title",
       },
     },
   },
@@ -202,7 +203,7 @@ Let's create a search index using the embeddings already available for the `wiki
 It should take only a couple of minutes for this index to be created and reach `ACTIVE` status, meaning that it is searchable.
 
 
-# Test Query
+# Test Query in Atlas
 Once the index is ready, go back to Compass. Select the `wikipedia` collection and go to the `Aggregations` tab like before. Hit `Add Stage` and enter `$search` for the first stage. Compass should provide you with sample syntax. To run a vector search query,  
 We now can test our Search Index through the aggregation pipeline builder. 
 - Go back to ‘**Browse Collections**’ and select the '**sample-mflix.movies**' collection.
