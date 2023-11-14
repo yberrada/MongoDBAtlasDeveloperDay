@@ -2,8 +2,6 @@
 
 The goal of this lab is to get you familiar with some of the MongoDB Atlas Search features and the MongoDB Python Driver.
 
-Answers for the exercises can be found in the `answers/` folder.  
-
 ## Exercise 0: Prerequisites
 ### Step 1: Access MongoDB Atlas cluster  
 
@@ -150,7 +148,7 @@ Next, play around [Compound search](https://www.mongodb.com/docs/atlas/atlas-sea
     should: {
       text: {
         path: "sentence",
-        query: "ADP",
+        query: "Automatic Data Processing",
         fuzzy: {
           maxEdits: 2,
         },
@@ -159,7 +157,7 @@ Next, play around [Compound search](https://www.mongodb.com/docs/atlas/atlas-sea
     mustNot: {
       text: {
         path: "sentence",
-        query: "revenue",
+        query: "henrey",
       },
     },
   },
