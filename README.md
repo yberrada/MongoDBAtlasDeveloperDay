@@ -9,13 +9,13 @@ The goal of this lab is to get you familiar with some of the MongoDB Atlas Searc
    - Gain access to your dedicated cluster by clicking on <b>Atlas Cluster</b> in the top left corner.
    - The e-mail will be pre-populated. To login use the following password: "***AtlasW0rkshop!*** "
 
->Great! By default, Atlas cluters are not reachable from the internet. Therefore, all the clusters have been pre-configured for both Network Security and User Authentication and Authorization. All clusters share the same credentials: <br />
+>Great! By default, Atlas cluters are not reachable from the internet. Therefore, all the clusters have been pre-configured for both Network Security and User Authentication and Authorization. <br /> All clusters share the same credentials: <br />
 *username:* **adpadmin** <br />
 *password:* **adpadminpass**<br />
 
 ## Exercise 1 : Load Data in Atlas
 #### Explanation and How-to
-Within this repo folder, you will find a [`corpus.txt`](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/corpus.txt) file containing the **History** section of ADP's page on wikipedia https://en.wikipedia.org/wiki/ADP_(company).This is the dataset that will be used throughout the Workshop
+Within this repo folder, you will find a [`corpus.txt`](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/corpus.txt) file containing the **History** section of ADP's page on wikipedia https://en.wikipedia.org/wiki/ADP_(company). This is the dataset that will be used throughout the workshop today.
 
 #### Exercise
 ### Step 1 - Clone Github Repo
@@ -32,7 +32,7 @@ We're going to start by setting up our project. Start by creating a folder for t
 
 ### Step 2 - Load Data into Atlas
 
-- Open the project in your favorite IDE and update your connection string in the`./MongoDBAtlasDeveloperDay/params.py`. To do so:
+- Open the project in your favorite IDE and update the  connection string in the`./MongoDBAtlasDeveloperDay/params.py`. To do so:
   - Go to the **Data Services** Tab. 
   - Under the cluster view, Click on **Connect**
   ![alt text](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/public/readme/connect.png) 
@@ -55,7 +55,7 @@ The paragraph in the file was split to multiple sentences, each loaded in your M
 Below is a snippet of what the records look like:
 ![wikipedia file snippet as seen from Atlas](https://github.com/yberrada/MongoDBAtlasDeveloperDay/blob/main/public/readme/previewcollection.png)
 
-## Exercise 2 : Create an Atlas Search Index and Search
+## Exercise 2 : Create an Atlas Search Index
 
 #### Explanation and How-to
 [Atlas Search](https://www.mongodb.com/docs/atlas/atlas-search/) is an embedded full-text search capability in MongoDB Atlas that gives you a seamless, scalable experience for building relevance-based app features. Built on Apache Lucene, Atlas Search eliminates the need to run a separate search system alongside your database.
@@ -67,7 +67,6 @@ Moreover, fulltext search also delivers capabilities such as typo tolerance thro
 #### Exercise
 We will be creating search indexes on top of the new `wikipedia` collection. 
 
-#### Exercise
 Please follow the instructions below to create a new search, optimized search index:
 1. In the **Atlas UI**, go to the **Search** page. There is a link called `Search` on the left-hand panel.
 2. Select your cluster and hit the `Go to Atlas Search` button. You should see the search index you previously made here. 
@@ -208,7 +207,7 @@ It should take only a couple of minutes for this index to be created and reach `
 
 Once the index is ready, go back to `Collections`, select the `wiki_embeddings` collection and go to the `Aggregations` tab like before. Hit `Add Stage` and enter `$search` for the first stage. Compass should provide you with sample syntax. To run a vector search query,  
 We now can test our Search Index through the aggregation pipeline builder. 
-- Go back to ‘**Browse Collections**’ and select the '**sample-mflix.movies**' collection.
+- Go back to ‘**Browse Collections**’ and select the '**devday.wiki_embeddings**' collection.
 ![alt text](./public/readme/aggregate.png) 
 
 - Click on the '**Aggregation**' tab 
@@ -231,7 +230,7 @@ We now can test our Search Index through the aggregation pipeline builder.
         "$limit": 1
     }
 ```
-> The search stage should match a movie titled: *The Storyteller*. Notice that our query string is *Storteler*.
+> The search stage should match a document that answers the following question: *"When was Automatic Payrolls founded?".*.
 
 
 ## Exercise 5 : Test Query in Code
