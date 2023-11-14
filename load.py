@@ -65,6 +65,8 @@ if args.action is None:
     result_collection = mongo_client[params.database][params.collection]
     for doc in docs:
         result_doc['sentence'] = doc
+        result_doc['company'] = 'ADP'
+        result_doc['url'] = 'https://en.wikipedia.org/wiki/ADP_(company)'
         result = result_collection.insert_one(result_doc.copy())
         print(result)
 elif args.action == 'vector':
@@ -74,6 +76,8 @@ elif args.action == 'vector':
     for doc in docs:
         doc_vector = model.encode(doc).tolist()
         result_doc['sentence'] = doc
+        result_doc['company'] = 'ADP'
+        result_doc['url'] = 'https://en.wikipedia.org/wiki/ADP_(company)'
         result_doc['docVector'] = doc_vector
         result = result_collection.insert_one(result_doc.copy())
         print(result)
