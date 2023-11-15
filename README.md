@@ -240,7 +240,7 @@ Now is the time to test your vector search index through code:
 - The python code is only missing the aggregation pipeline.
 - Add the pipeline and change the `query` of the aggregation pipeline to take the result of the encoder as a query rather than hardcoding the vector value
 - Test your code: 
-```python3 search.py -q "When was automated processing founded"```
+```python3 search.py -q "Who founded automatic payrolls"```
 - Other Questions to test your code with can be: 
   - "Who did Henry Taub found Automatic Payrolls with"
   - "When did ADP for public?"
