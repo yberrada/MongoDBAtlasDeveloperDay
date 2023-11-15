@@ -237,7 +237,9 @@ Now is the time to test your vector search index through code:
 - From the Atlas Aggregation builder, export the pipeline to Python syntax by clicking on **EXPORT TO LANGUAGE**.
 - Make sure to copy the pipeline code.
 - Go back to the python project and locate `search.py` file. 
-- The python code is only missing the aggregation pipeline. Paste it and test your code: 
+- The python code is only missing the aggregation pipeline.
+- Add the pipeline and change the `query` of the aggregation pipeline to take the result of the encoder as a query rather than hardcoding the vector value
+- Test your code: 
 ```python3 search.py -q "When was automated processing founded"```
 - Other Questions to test your code with can be: 
   - "Who did Henry Taub found Automatic Payrolls with"
