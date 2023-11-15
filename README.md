@@ -48,6 +48,7 @@ We're going to start by setting up our project. Start by creating a folder for t
 
 - Now, install the pre-requisites:
   ```
+  cd MongoDBAtlasDeveloperDay
   pip3 install -r requirements.txt
   ```
 - Run the `load.py` to start loading chunks of the the `corpus.txt`:
