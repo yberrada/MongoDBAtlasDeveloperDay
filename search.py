@@ -12,9 +12,11 @@ args = parser.parse_args()
 if args.question is None:
     # Some questions to try...
     query = "When was Automatic Payrolls founded?"
-    query = "Who founded TBS?"
-    query = "Who did Warner purchase in 1982?"
-    query = "What happened to TBS?"
+    query = "Who did Henry Taub found Automatic Payrolls with"
+    query = "When did ADP for public?"
+    query = "What happened in 1985?"
+    query = "How many clients did ADP have in 1961?"
+    query = "Where is ADP ranked on Fortune 500?"
 else:
     query = args.question
 
@@ -27,26 +29,14 @@ if args.question is None:
     print("--------------")
     print(query)
 
+# Establish connections to MongoDB
+mongo_client = MongoClient(params.mongodb_conn_string)
+result_collection = mongo_client[params.database][params.collectionVector]
+
 # Encode our question
 query_vector = model.encode(query).tolist()
 
-# Establish connections to MongoDB
-mongo_client = MongoClient(params.mongodb_conn_string)
-result_collection = mongo_client[params.database][params.collection]
-pipeline = [
-    {
-        "$search": {
-            "knnBeta": {
-                "vector": query_vector,
-                "path": "docVector",
-                "k": 150
-            }
-        }
-    },
-    {
-        "$limit": 1
-    }
-]
+pipeline = []
 
 results = result_collection.aggregate(pipeline)
 
