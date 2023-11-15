@@ -41,6 +41,10 @@ We're going to start by setting up our project. Start by creating a folder for t
   - Select **Connect your application**
   - Make sure the python driver is selected and Copy the connection string. 
   - Update the connection string in the `params.py` file.
+  - Remember that you have to update the credentials in the connection string:
+    - All clusters used in this workshop share the same credentials: <br />
+      *username:* **adpadmin** <br />
+      *password:* **adpadminpass**<br />
 
 - Now, install the pre-requisites:
   ```
