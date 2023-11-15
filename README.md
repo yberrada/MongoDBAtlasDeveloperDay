@@ -7,7 +7,7 @@ The goal of this lab is to get you familiar with some of the MongoDB Atlas Searc
 
    - Login to the attendee portal https://www.atlas-labs.cloud/ using your **email** as a username.
    - Gain access to your dedicated cluster by clicking on <b>Atlas Cluster</b> in the top left corner.
-   - The e-mail will be pre-populated. To login use the following password: "**AtlasW0rkshop!** "
+   - The e-mail will be pre-populated. To login use the following password: "**AtlasW0rkshop!**"
 
 >Great! By default, Atlas cluters are not reachable from the internet. Therefore, all the clusters have been pre-configured for both Network Security and User Authentication and Authorization. <br /> All clusters share the same credentials: <br />
 *username:* **adpadmin** <br />
