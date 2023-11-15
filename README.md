@@ -108,11 +108,12 @@ Try running the following query in the search stage:
 ```
 Note that `fuzzy` is enabled which means that our search query is typo tolerant.
 
-To see the `relevancy score`, add a subsequent `$project` stage to the pipeline:
+To see the `relevancy score`, add a subsequent `$set` stage to the pipeline:
 ```
-score: {
+{score: {
     $meta: "searchScore",
-  },
+  }
+}
 ```
 Here is a full aggregation pipeline:
 ```
